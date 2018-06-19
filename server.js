@@ -48,7 +48,7 @@ app.get('/detail/:id', function(req,res) {
 
 
 const server = app.listen(port, function() {
-    console.log("* Hail his grace, Lord Servingport, the " + port + "th of his name *");
+    console.log("🏰 Hail his grace, Lord Servingport, the " + port + "th of his name 🏰");
 })
 
 module.exports = server;
