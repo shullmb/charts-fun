@@ -1,0 +1,8 @@
+<h1>Survey: <%= data[0].survey %></h1>
+<canvas id="myChart" width='400' height='400'></canvas>
+<h4>Data points</h4>
+<% data.forEach( function(item,i){ %>
+    <div>
+        <p> <%= item.name %> said <%= item.answer %> </p>
+    </div>
+<% }) %>

@@ -14,7 +14,10 @@ app.use(express.static(__dirname + "/static"));
 
 app.get('/', function(req,res) {
     console.log('get /');
-    res.render('index');
+    db.poll.aggregate('survey', 'DISTINCT', {plain: false}).then( function(data){
+        console.log(data)
+        res.render('index', {surveys: data});
+    })
 })
 
 app.get('/new', function(req,res) {
@@ -33,10 +36,19 @@ app.post('/', function(req,res) {
     })
 })
 
+app.get('/detail/:id', function(req,res) {
+    console.log('get /detail/:id');
+    db.poll.findAll({
+        where: {survey: req.params.id}
+    }).then( function(data){
+        res.render('show', {data});
+    })
+
+})
 
 
 const server = app.listen(port, function() {
-    console.log("Running and runnning on: " + port);
+    console.log("* Hail his grace, Lord Servingport, the " + port + "th of his name *");
 })
 
 module.exports = server;
