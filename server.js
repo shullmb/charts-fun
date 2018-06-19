@@ -12,6 +12,26 @@ app.use(layouts);
 app.use(bp.urlencoded({extended: false}));
 app.use(express.static(__dirname + "/static"));
 
+app.get('/', function(req,res) {
+    console.log('get /');
+    res.render('index');
+})
+
+app.get('/new', function(req,res) {
+    console.log('get /new');
+    res.render('new');
+})
+
+app.post('/', function(req,res) {
+    console.log('post poll to /');
+    db.poll.create({
+      name: req.body.name,
+      answer: req.body.answer,
+      survey: req.body.survey  
+    }).then( function(poll) {
+        res.redirect('/');
+    })
+})
 
 
 
